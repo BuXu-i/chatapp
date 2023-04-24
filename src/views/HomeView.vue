@@ -1,10 +1,10 @@
 <template>
-    <div>
-        <div class="box">
-            <router-view class="value" />
-            <homeCentral class="homeCentral" />
-        </div>
+  <div>
+    <div class="box">
+      <router-view class="value" />
+      <homeCentral class="homeCentral" />
     </div>
+  </div>
 </template>
 
 <script>
@@ -12,25 +12,25 @@
 import homeCentral from "../components/home/homeCentral.vue";
 // const Central = require("/components/chat/central.vue");
 export default {
-    // name: "HomeView",
-    components: {
-        homeCentral,
-    },
-    beforeMount() {
-        console.log("改在底部组件");
-        console.log(homeCentral);
-    },
+  // name: "HomeView",
+  components: {
+    homeCentral,
+  },
+  beforeMount() {
+    console.log("改在底部组件");
+    console.log(homeCentral);
+  },
 };
 </script>
 <style lang="less" scoped>
 .value {
-    height: 92vh;
+  height: 92vh;
 }
 .homeCentral {
-    position: absolute;
-    width: 100%;
-    height: 8vh;
-    bottom: 0;
-    left: 0;
+  position: absolute;
+  width: 100%;
+  height: 8vh;
+  bottom: 0;
+  left: 0;
 }
 </style>
