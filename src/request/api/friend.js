@@ -1,6 +1,6 @@
 import { servece } from "../index";
 
-//获取好友列表
+/**获取好友列表 */ 
 export const idListApi = (id) => {
     console.log("获取好友列表");
     return servece({
@@ -9,7 +9,7 @@ export const idListApi = (id) => {
         data: id,
     });
 };
-//添加好友
+/**添加好友 */
 export const ididApi = (idid_) => {
     console.log("添加好友");
     return servece({
@@ -17,4 +17,13 @@ export const ididApi = (idid_) => {
         url: "/frind/idid",
         data: idid_,
     });
+};
+/**删除好友 */
+export const deleteIdApi = (idid_) => {
+  console.log("添加好友");
+  return servece({
+      method: "post",
+      url: "/frind/idid",
+      data: idid_,
+  });
 };

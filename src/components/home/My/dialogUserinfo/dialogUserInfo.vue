@@ -54,7 +54,8 @@
               </van-col>
               <van-col span="5">
                 <van-button type="default"
-                            size="mini" @click="deleteFriend(item.id)">删除</van-button>
+                            size="mini"
+                            @click="deleteFriend(item.id)">删除</van-button>
               </van-col>
             </van-row>
           </van-collapse-item>
@@ -64,7 +65,7 @@
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
   props: ["user"],
   data() {
@@ -75,6 +76,9 @@ export default {
   computed: {
     //friendList 好友列表
     ...mapState("friend", ["friendList"]),
+  },
+  methods: {
+    ...mapActions("friend", ["deleteIdAis"]),
   },
   mounted() {
     console.log("创建组件时触发");

@@ -1,4 +1,4 @@
-import { idListApi, ididApi } from "@/request/api/friend";
+import { idListApi, ididApi, deleteIdApi } from "@/request/api/friend";
 //token
 // import token from "@/utils/index";
 // import router from "@/router";
@@ -24,14 +24,6 @@ export const friend_modules = {
 	},
 	getters: {},
 	mutations: {
-		deleteFriend(state, id) {
-			console.log("删除好友操作 好友id");
-			console.log(id);
-		},
-		addFriend(state) {
-			console.log("新增好友操作 好友id");
-			console.log(id);
-		},
 		//更新list 好友列表
 		dataupList(stata, list) {
 			console.log([servece.defaults.baseURL]);
@@ -69,6 +61,14 @@ export const friend_modules = {
 		async ididAis(context, ididObj) {
 			let idid = await ididApi(ididObj);
 			console.log(idid.data.message);
+			context.commit("dataupList", list.data);
+			return idid.data.message;
+		},
+		/**删除好友 */
+		async deleteIdAis(context, ididObj) {
+			let idid = await deleteIdApi(ididObj);
+			console.log(idid.data.message);
+			context.commit("dataupList", list.data);
 			return idid.data.message;
 		},
 	},
