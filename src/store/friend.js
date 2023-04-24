@@ -9,19 +9,8 @@ export const friend_modules = {
 	//调用时给出需要的用户信息
 	namespaced: true,
 	state: {
-		friendList: [
-			{
-				nickname: "管理员1",
-				headimg: img1,
-				id: "00100021",
-			},
-			{
-				nickname: "管理员2",
-				headimg: img1,
-				id: "00100021",
-			},
-		],
-		idList: [{ id: "00100021" }, { id: "00100021" }],
+		friendList: [],
+		idList: [{ id: "00100021" }, { id: "00100011" }],
 	},
 	getters: {},
 	mutations: {
@@ -64,15 +53,15 @@ export const friend_modules = {
 		async ididAis(context, id) {
 			console.log("添加好友中");
 			console.log(id);
-			let idid = await ididApi({ id_: id });
+			let idid = await ididApi({ id_: id + "" });
 			context.dispatch("idListAis"); //刷新好友列表
-			return idid.data.message;
+			alert(idid.data.message);
 		},
 		/**删除好友 */
 		async deleteIdAis(context, ididObj) {
-			let idid = await deleteIdApi({ id: ididObj });
+			let idid = await deleteIdApi({ id: ididObj + "" });
 			context.dispatch("idListAis");
-			return idid.data.message;
+			alert(idid.data.message);
 		},
 	},
 };

@@ -59,15 +59,8 @@
               </van-col>
             </van-row>
           </van-collapse-item>
-        </van-collapse>
-      </van-col>
-    </van-row>
-    <van-row>
-      <van-col span="22"
-               class="box1">
-        <van-collapse v-model="activeNames">
           <van-collapse-item title="可添加好友列表"
-                             name="1">
+                             name="2">
             <van-row v-for="item in idList"
                      :key="item.id">
               <van-col span="19">
@@ -106,7 +99,7 @@ export default {
     console.log("创建组件时触发");
     console.log(this.user); //headimg  nickname sex
     console.log(this.user.coordinate);
-    this.idListAis()//刷新好友列表
+    this.idListAis(); //刷新好友列表
   },
 };
 </script>
