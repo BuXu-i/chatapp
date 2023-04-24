@@ -1,5 +1,5 @@
 <template>
-    <p>群的聊天界面</p>
+  <p>群的聊天界面</p>
 </template>
 
 <script>
