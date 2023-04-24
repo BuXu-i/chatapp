@@ -21,6 +21,7 @@ export const friend_modules = {
 				id: "00100021",
 			},
 		],
+		idList: [{ id: "00100021" }, { id: "00100021" }],
 	},
 	getters: {},
 	mutations: {
@@ -60,8 +61,10 @@ export const friend_modules = {
 			context.commit("dataupList", list.data);
 		},
 		//添加好友
-		async ididAis(context, ididObj) {
-			let idid = await ididApi({ id: ididObj });
+		async ididAis(context, id) {
+			console.log("添加好友中");
+			console.log(id);
+			let idid = await ididApi({ id_: id });
 			context.dispatch("idListAis"); //刷新好友列表
 			return idid.data.message;
 		},

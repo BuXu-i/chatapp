@@ -62,6 +62,27 @@
         </van-collapse>
       </van-col>
     </van-row>
+    <van-row>
+      <van-col span="22"
+               class="box1">
+        <van-collapse v-model="activeNames">
+          <van-collapse-item title="可添加好友列表"
+                             name="1">
+            <van-row v-for="item in idList"
+                     :key="item.id">
+              <van-col span="19">
+                id： {{ item.id }}
+              </van-col>
+              <van-col span="5">
+                <van-button type="default"
+                            size="mini"
+                            @click="ididAis(item.id)">添加</van-button>
+              </van-col>
+            </van-row>
+          </van-collapse-item>
+        </van-collapse>
+      </van-col>
+    </van-row>
   </div>
 </template>
 <script>
@@ -73,17 +94,19 @@ export default {
       activeNames: ["1"],
     };
   },
+
   computed: {
     //friendList 好友列表
-    ...mapState("friend", ["friendList"]),
+    ...mapState("friend", ["friendList", "idList"]),
   },
   methods: {
-    ...mapActions("friend", ["deleteIdAis"]),
+    ...mapActions("friend", ["deleteIdAis", "ididAis", "idListAis"]),
   },
   mounted() {
     console.log("创建组件时触发");
     console.log(this.user); //headimg  nickname sex
     console.log(this.user.coordinate);
+    this.idListAis()//刷新好友列表
   },
 };
 </script>
