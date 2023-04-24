@@ -1,10 +1,11 @@
 <template>
   <div class="box">
+    <!-- <van-icon name="arrow-left" /> -->
     <van-row>
       <van-col span="1">
       </van-col>
       <van-col span="15">
-        <van-icon name="arrow-left" />
+        <van-icon name="arrow-left" @click="$emit('closeIsShow')" />
       </van-col>
       <!-- <van-col span="4">
         <van-icon name="arrow-left" />
@@ -85,8 +86,10 @@
   </div>
 </template>
 <script>
-
 export default {
+  setup(props) {
+    
+  },
   data() {
     return {
       activeNames: ["1"],

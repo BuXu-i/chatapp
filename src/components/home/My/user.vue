@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="box"
-         @click="clickIsShow">
+         @click="showPopup">
       <img :src="img1"
            class="back">
       <div class="user">
@@ -22,17 +22,12 @@
       </div>
     </div>
     <!-- 右侧弹出 -->
-    <van-popup v-model:show="isShow"
+    <van-popup v-model:show="show"
                position="right"
                :style="{ width: '100%', height: '100%' }">
       <dialogUserInfoVue :user='user'
-                         @clickIsShow="clickIsShow" />
+                         @closeIsShow="showPopup" />
     </van-popup>
-    <!-- <van-dialog v-model:show="show"
-                title="个人信息"
-                show-cancel-button>
-
-    </van-dialog> -->
   </div>
 </template>
 
@@ -40,20 +35,30 @@
 import img1 from "@/assets/img/news.jpg";
 import dialogUserInfoVue from "./dialogUserinfo/dialogUserInfo.vue";
 import { mapState } from "vuex";
+import { ref } from "vue";
 export default {
   components: {
     dialogUserInfoVue,
   },
+  setup() {
+    const show = ref(false);
+    const showPopup = () => {
+      show.value = !show.value;
+    };
+    return {
+      show,
+      showPopup,
+    };
+  },
   data() {
     return {
-      isShow: false,
       img1,
     };
   },
   methods: {
-    clickIsShow() {
-      this.isShow = !this.isShow;
-    },
+    // clickIsShow() {
+    //   this.isShow = !this.isShow;
+    // },
   },
   computed: {
     ...mapState(["user"]),
