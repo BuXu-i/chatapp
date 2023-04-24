@@ -5,54 +5,40 @@
       <van-col span="1">
       </van-col>
       <van-col span="15">
-        <van-icon name="arrow-left" @click="$emit('closeIsShow')" />
+        <van-icon name="arrow-left"
+                  @click="$emit('closeIsShow')" />
       </van-col>
       <!-- <van-col span="4">
         <van-icon name="arrow-left" />
       </van-col> -->
     </van-row>
     <van-row>
-      <van-col span="13"
+      <van-col span="2"
                class="box1">
         头像
       </van-col>
       <van-col span="8">
         <img class="headimg"
-             src="http://43.142.189.60:3006/public/img/head.57bcaeba.jpg"
-             alt="">
+             :src="this.user.headimg">
       </van-col>
     </van-row>
     <van-row>
       <van-col span="12"
                class="box1">
-        昵称
-      </van-col>
-      <van-col span="8"
-               class="nickname">管理员1
+        昵称：{{this.user.nickname}}
       </van-col>
     </van-row>
     <van-row>
       <van-col span="12"
                class="box1">
-        电话
+        电话：{{this.user.phone}}
       </van-col>
-      <van-col span="8"
-               class="nickname">28385231727
-      </van-col>
+
     </van-row>
     <van-row>
       <van-col span="12"
                class="box1">
-        性别
-      </van-col>
-      <van-col span="8"
-               class="nickname">男
-      </van-col>
-    </van-row>
-    <van-row>
-      <van-col span="12"
-               class="box1">
-        已发布内容 <van-icon name="arrow" />
+        性别：{{ this.user.sex==0?'男':'女' }}
       </van-col>
     </van-row>
     <van-row>
@@ -61,22 +47,14 @@
         <van-collapse v-model="activeNames">
           <van-collapse-item title="好友列表"
                              name="1">
-            <van-row>
+            <van-row v-for="item in friendList"
+                     :key="item.id">
               <van-col span="19">
-                小样
+                {{ item.nickname }}
               </van-col>
               <van-col span="5">
                 <van-button type="default"
-                            size="mini">删除</van-button>
-              </van-col>
-            </van-row>
-            <van-row>
-              <van-col span="19">
-                管理员2
-              </van-col>
-              <van-col span="5">
-                <van-button type="default"
-                            size="mini">删除</van-button>
+                            size="mini" @click="deleteFriend(item.id)">删除</van-button>
               </van-col>
             </van-row>
           </van-collapse-item>
@@ -86,31 +64,40 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
-  setup(props) {
-    
-  },
+  props: ["user"],
   data() {
     return {
       activeNames: ["1"],
     };
+  },
+  computed: {
+    //friendList 好友列表
+    ...mapState("friend", ["friendList"]),
+  },
+  mounted() {
+    console.log("创建组件时触发");
+    console.log(this.user); //headimg  nickname sex
+    console.log(this.user.coordinate);
   },
 };
 </script>
 <style lang="less" scoped>
 .box {
   margin-top: 20px;
+  // height: 100%;
+  .headimg {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0.1rem #fff;
+    margin: 10px;
+  }
 }
 .box1 {
   margin-top: 20px;
   margin-left: 20px;
-}
-.headimg {
-  width: 1.2rem;
-  height: 1.2rem rem;
-  border-radius: 50%;
-  box-shadow: 0 0 0 0.1rem #fff;
-  margin: 10px;
 }
 .nickname {
   overflow: hidden;

@@ -16,6 +16,7 @@ export default createStore({
             replaceState: 10, //发布内容条数
             coordinate: "武汉", //坐标
             sex: 0,
+            phone:1362586329
         },
         isLogin: 0,
     },

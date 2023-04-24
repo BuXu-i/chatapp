@@ -24,6 +24,14 @@ export const friend_modules = {
 	},
 	getters: {},
 	mutations: {
+		deleteFriend(state, id) {
+			console.log("删除好友操作 好友id");
+			console.log(id);
+		},
+		addFriend(state) {
+			console.log("新增好友操作 好友id");
+			console.log(id);
+		},
 		//更新list 好友列表
 		dataupList(stata, list) {
 			console.log([servece.defaults.baseURL]);
