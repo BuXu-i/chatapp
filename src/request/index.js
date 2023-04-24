@@ -1,5 +1,6 @@
 //配置 axios 的默认请求
 import axios from "axios";
+import token from "@/utils/index";
 export let servece = axios.create({
 	baseURL: "http://localhost:3007/", //默认是git请求
 	// baseURL: "http://43.142.189.60:3007/", //默认是git请求
@@ -18,7 +19,6 @@ export let servece = axios.create({
 			return data;
 		},
 	],
-
 	// `transformResponse` 在传递给 then/catch 前，允许修改响应数据
 	transformResponse: [
 		function (data) {
@@ -31,11 +31,17 @@ export let servece = axios.create({
 });
 //
 // 添加请求拦截器  下面的都未使用
-export let request = axios.interceptors.request.use(
+servece.interceptors.request.use(
 	function (config) {
 		console.log("axios 请求拦截");
-		// 在发送请求之前做些什么
-		console.log(config);
+		//添加token
+		if (token.getToken()) {
+			//将token放到请求头发送给服务器,将tokenkey放在请求头中
+			config.headers.Authorization = token.getToken();
+			//也可以这种写法
+			// config.headers['accessToken'] = Token;
+			return config;
+		}
 		return config;
 	},
 	function (error) {
@@ -47,7 +53,7 @@ export let request = axios.interceptors.request.use(
 );
 
 // 添加响应拦截器
-export let response = axios.interceptors.response.use(
+servece.interceptors.response.use(
 	function (response) {
 		console.log("axios 正常 响应");
 		// 对响应数据做点什么

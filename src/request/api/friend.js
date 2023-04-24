@@ -11,19 +11,17 @@ export const idListApi = (id) => {
 };
 /**添加好友 */
 export const ididApi = (idid_) => {
-    console.log("添加好友");
     return servece({
         method: "post",
-        url: "/frind/idid",
+        url: "/friend/idid",
         data: idid_,
     });
 };
 /**删除好友 */
 export const deleteIdApi = (idid_) => {
-  console.log("添加好友");
   return servece({
       method: "post",
-      url: "/frind/idid",
+      url: "/friend/deleteId",
       data: idid_,
   });
 };

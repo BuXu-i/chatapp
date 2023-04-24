@@ -55,7 +55,7 @@
               <van-col span="5">
                 <van-button type="default"
                             size="mini"
-                            @click="deleteFriend(item.id)">删除</van-button>
+                            @click="deleteIdAis(item.id)">删除</van-button>
               </van-col>
             </van-row>
           </van-collapse-item>

@@ -26,6 +26,7 @@ export const friend_modules = {
 	mutations: {
 		//更新list 好友列表
 		dataupList(stata, list) {
+			console.log("更新好友列表0.0");
 			console.log([servece.defaults.baseURL]);
 			if (list.idlist) {
 				console.log(list.idlist);
@@ -45,12 +46,13 @@ export const friend_modules = {
 			} else {
 				console.log("失败");
 				//可以查询失败原因 重新post
+				stata.friendList = [];
 				console.log(list);
 			}
 		},
 	},
 	actions: {
-		//获取好友列表
+		/**获取好友列表 */
 		async idListAis(context) {
 			// console.log(context.rootState.friend);
 			let list = await idListApi({ id: context.rootState.user.id });
@@ -59,16 +61,14 @@ export const friend_modules = {
 		},
 		//添加好友
 		async ididAis(context, ididObj) {
-			let idid = await ididApi(ididObj);
-			console.log(idid.data.message);
-			context.commit("dataupList", list.data);
+			let idid = await ididApi({ id: ididObj });
+			context.dispatch("idListAis"); //刷新好友列表
 			return idid.data.message;
 		},
 		/**删除好友 */
 		async deleteIdAis(context, ididObj) {
-			let idid = await deleteIdApi(ididObj);
-			console.log(idid.data.message);
-			context.commit("dataupList", list.data);
+			let idid = await deleteIdApi({ id: ididObj });
+			context.dispatch("idListAis");
 			return idid.data.message;
 		},
 	},
