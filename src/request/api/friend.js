@@ -25,3 +25,12 @@ export const deleteIdApi = (idid_) => {
       data: idid_,
   });
 };
+
+// /**删除好友 */
+// export const deleteIdApi = (idid_) => {
+//   return servece({
+//       method: "post",
+//       url: "/friend/deleteId",
+//       data: idid_,
+//   });
+// };

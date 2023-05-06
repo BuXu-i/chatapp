@@ -38,7 +38,7 @@
     <van-row>
       <van-col span="12"
                class="box1">
-        性别：{{ this.user.sex==0?'男':'女' }}
+        性别：{{ this.user.sex==1?'男':'女' }}
       </van-col>
     </van-row>
     <van-row>

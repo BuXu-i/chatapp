@@ -89,6 +89,14 @@ export default {
           img: [img1],
           is_private: null,
         },
+        {
+          time: 1683380911844,
+          id: "00900171",
+          text: "你是谁 我又是谁",
+          comment: null,
+          img: [],
+          is_private: null,
+        },
       ], //模拟数据 //自己发布的内容
       //获取自己的id
       otherList: [], //相关的发布内容//模拟数据 其他人发布 自己并有过交互的发布内容
@@ -96,7 +104,10 @@ export default {
   },
   mounted() {
     this.otherList = token.getValue();
-    this.myList.push(...this.otherList);
+    if (!!this.otherList) {
+      this.myList.push(...this.otherList);
+      // this.otherList = [];
+    }
   },
   methods: {
     //user 中 开关

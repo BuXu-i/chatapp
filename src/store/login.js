@@ -12,14 +12,18 @@ export const login_modules = {
 	mutations: {
 		//登录成功 存储id 昵称 等传回的其他信息
 		loginYesMis(state, msg) {
+			console.log("-----------222------------");
 			console.log(msg);
 			//录入登录者信息
 			this.state.user.id = msg.id + "";
 			this.state.user.nickname = msg.nickname;
-			this.state.user.head_img =
-				servece.defaults.baseURL + "node/" + msg.headimg;
+			this.state.user.head_img = servece.defaults.baseURL + "node/" + msg.headimg;
 			//将登录登录状态改变
 			this.state.isLogin = true;
+			this.state.user.phone = msg.telephone;
+			this.state.user.name = msg.name;
+			this.state.user.sex = msg.sex;
+			this.state.user.school = msg.school;
 			// state.rootStata.is_loginvue = true;
 		},
 	},
@@ -68,6 +72,7 @@ export const login_modules = {
 			} else {
 				//载入vuex状态
 				console.log("修改前 可以这样修改");
+        console.log(msg);
 				this.state.user.id = msg.data.user.id;
 				this.state.user.nickname = msg.data.user.nickname;
 				this.state.isLogin = true; //登录状态更改
@@ -78,6 +83,10 @@ export const login_modules = {
 					"head.jpg"
 						? msg.data.user.id + "/head.jpg"
 						: "default.jpg");
+				this.state.user.phone = msg.data.user.telephone;
+				this.state.user.name = msg.data.user.name;
+				this.state.user.sex = msg.data.user.sex;
+				this.state.user.school = msg.data.user.school;
 				console.log("修改成功？");
 				console.log(this.state);
 				return true;
