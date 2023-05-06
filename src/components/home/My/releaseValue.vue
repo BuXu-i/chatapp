@@ -63,9 +63,8 @@
 
 <script>
 import img1 from "@/assets/img/head.jpg";
-
+import token from "@/utils/index";
 export default {
-
   data() {
     return {
       isShow: false,
@@ -90,34 +89,14 @@ export default {
           img: [img1],
           is_private: null,
         },
-        {
-          time: 166598371107,
-          id: 12314,
-          text: "有一天，我在广场上一如既往的散步，突然，我看见有一个人往地上扔垃圾，大家觉得这是一件小事，可我却不这么认为，因为如果每个人都把看成小事，都扔一片垃圾，那么世界将会变成什么样子，我想到这里，二话不说，把垃圾捡起来扔进垃圾桶里。　　还有一次，我坐在广场上，他们在草地上玩，我看到小草已经弯下了“腰”，可能再也挺不直了，可小伙伴还在草地上玩闹嬉戏着，我就上前对他们说：“爱护花草，人人有责。”　　我们身边每天都发生上演着许多事情，我们要力所能及地去帮助它，使社会变得更加美好。",
-          comment: null,
-          img: [img1],
-          is_private: null,
-        },
       ], //模拟数据 //自己发布的内容
-      otherList: [
-        {
-          time: 1665983714307,
-          id: 345345,
-          text: "只见大狗走了一会儿就不走了，然后竟然在地上大便了。大便后它就要走，但阿姨不让它走，让它在一旁坐着。只见阿姨弯下腰来，这时我想：阿姨不会是要用她的纤纤玉手去抓便便吧？正在想着，就看到阿姨从包里拿出一次性手套和纸巾，动作麻利地把便便包在纸巾中扔到了垃圾桶里，然后才牵着狗狗离开。　　我见过许多人在宠物大小便之后不管不顾就走了，而这位阿姨的举动竟出乎我意料之外。从阿姨包里装着一次性手套，就可以看出她不是第一次这么做，而是一直这么处理的！如果人人都能像这位阿姨一样注意爱护卫生，那我们的城市将更加美丽，地球也将更加美丽！　　我要为这位阿姨的行为点赞，也希望平时不注意环境卫生的人都能向她学习。我们一定要做到“保护环境，人人有责”、“保护环境，从我做起”",
-          comment: null,
-          img: [img1],
-          is_private: null,
-        },
-        {
-          time: 16659837146507,
-          id: 546456,
-          text: "人行街道上，许多人随地扔垃圾。大部分人肯定会这样想：随地扔点垃圾没什么大不了的，环卫工人一会儿就会来把我们扔的垃圾扫走。可你有没有想过，冬天里，许多环卫工人在我们还在被窝里贪睡时，他们就已经开始上班，辛苦打扫了；在我们还做着美梦的时候，他们就穿着单薄的衣服在寒风里受冻了。在这里，我想提醒大家：我们都不要乱扔垃圾，爱护环境从你我做起。　　小事在我们身边，无处不在。我们每个人只要努力把每一件小事做好，就会很成功。因为老师说过：“小事做好，也就成了大事。”",
-          comment: null,
-          img: [img1, img1],
-          is_private: null,
-        },
-      ], //相关的发布内容//模拟数据 其他人发布 自己并有过交互的发布内容
+      //获取自己的id
+      otherList: [], //相关的发布内容//模拟数据 其他人发布 自己并有过交互的发布内容
     };
+  },
+  mounted() {
+    this.otherList = token.getValue();
+    this.myList.push(...this.otherList);
   },
   methods: {
     //user 中 开关
@@ -181,24 +160,26 @@ export default {
   .list {
     width: 92%;
     margin: 0.6rem auto 2rem auto;
-    li {
-      p,
-      svg,
-      img {
-        margin-bottom: 10px;
-      }
-      border-radius: 50px;
-      background-color: #fff;
-      margin-top: 30px;
-      padding: 20px;
-      .time {
-        opacity: 0.7;
-      }
-      img {
-        width: 70px;
-        height: 70px;
-        border-radius: 5px;
-        margin-right: 10px;
+    ul {
+      li {
+        p,
+        svg,
+        img {
+          margin-bottom: 10px;
+        }
+        border-radius: 50px;
+        background-color: #fff;
+        margin-top: 30px;
+        padding: 20px;
+        .time {
+          opacity: 0.7;
+        }
+        img {
+          width: 70px;
+          height: 70px;
+          border-radius: 5px;
+          margin-right: 10px;
+        }
       }
     }
   }
